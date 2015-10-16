@@ -14,6 +14,7 @@ When that script is requested, ember-cli will serve up the script in the `dynami
 
 Some nginx config proxies that to ember-cli's live-reload server running in this project on port 37500:
 
+```
   server {
     listen 80;
     listen 443 ssl;
@@ -29,12 +30,14 @@ Some nginx config proxies that to ember-cli's live-reload server running in this
 
     # ...
   }
+```
 
 livereload.js is requested with query params that cause it to make a
 secure websocket connection to cloudfront-standin-app.yapp.dev and on
 a port 100 greater than 37500 (37600). nginx config terminates SLL
 and proxies that to ember-cli's live-reload server:
 
+```
   server {
     listen 37600 ssl;
     server_name something.yourapphost.dev;
@@ -46,3 +49,4 @@ and proxies that to ember-cli's live-reload server:
       proxy_set_header Connection "upgrade";
     }
   }
+```
