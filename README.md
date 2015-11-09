@@ -35,14 +35,14 @@ secure websocket connection to cloudfront-standin-app.yapp.dev and on
 a port 100 greater than 37500 (37600). nginx config terminates SLL
 and proxies that to ember-cli's live-reload server:
 
-  server {
-    listen 37600 ssl;
-    server_name something.yourapphost.dev;
+    server {
+      listen 37600 ssl;
+      server_name something.yourapphost.dev;
 
-    location / {
-      proxy_pass http://localhost:37500;
-      proxy_http_version 1.1;
-      proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection "upgrade";
+      location / {
+        proxy_pass http://localhost:37500;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+      }
     }
-  }
